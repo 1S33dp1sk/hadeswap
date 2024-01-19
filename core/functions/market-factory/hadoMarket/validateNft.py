@@ -3,8 +3,8 @@ from solana.rpc.api import Client
 from solana.transaction import Transaction
 from solana.keypair import Keypair
 from solana.system_program import SYS_PROGRAM_ID, SYSVAR_RENT_PUBKEY
-from your_project.helpers import return_anchor_program
-from your_project.types import NftValidationWhitelistType
+from hadeswap.helpers import return_anchor_program
+from hadeswap.types import NftValidationWhitelistType
 
 async def validate_nft(program_id: PublicKey, connection: Client, user_pubkey: PublicKey, classic_validation_whitelist: PublicKey, send_txn):
     program = await return_anchor_program(program_id, connection)

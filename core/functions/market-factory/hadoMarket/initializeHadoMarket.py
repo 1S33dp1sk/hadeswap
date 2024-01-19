@@ -3,9 +3,9 @@ from solana.rpc.api import Client
 from solana.transaction import Transaction
 from solana.keypair import Keypair
 from solana.system_program import SYS_PROGRAM_ID, SYSVAR_RENT_PUBKEY
-from your_project.helpers import return_anchor_program
-from your_project.constants import EMPTY_PUBKEY, ENCODER, FEE_PREFIX, NFTS_OWNER_PREFIX, SOL_FUNDS_PREFIX
-from your_project.types import BondingCurveType, PairType
+from hadeswap.helpers import return_anchor_program
+from hadeswap.constants import EMPTY_PUBKEY, ENCODER, FEE_PREFIX, NFTS_OWNER_PREFIX, SOL_FUNDS_PREFIX
+from hadeswap.types import BondingCurveType, PairType
 
 async def initialize_hado_market(program_id: PublicKey, connection: Client, user_pubkey: PublicKey, validation_adapter_program: PublicKey, send_txn):
     program = await return_anchor_program(program_id, connection)

@@ -3,8 +3,8 @@ from solana.rpc.api import Client
 from solana.transaction import Transaction
 from solana.keypair import Keypair
 from solana.system_program import SYS_PROGRAM_ID, SYSVAR_RENT_PUBKEY
-from your_project.helpers import return_anchor_program, enum_to_anchor_enum
-from your_project.types import NftValidationWhitelistType
+from hadeswap.helpers import return_anchor_program, enum_to_anchor_enum
+from hadeswap.types import NftValidationWhitelistType
 
 async def add_classic_whitelist_to_market(program_id: PublicKey, connection: Client, user_pubkey: PublicKey, hado_market: PublicKey, whitelisted_address: PublicKey, whitelist_type: NftValidationWhitelistType, send_txn):
     program = await return_anchor_program(program_id, connection)

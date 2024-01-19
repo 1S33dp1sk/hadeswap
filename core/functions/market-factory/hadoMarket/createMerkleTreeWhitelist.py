@@ -3,7 +3,7 @@ from solana.rpc.api import Client
 from solana.transaction import Transaction
 from solana.keypair import Keypair
 from solana.system_program import SYS_PROGRAM_ID, SYSVAR_RENT_PUBKEY
-from your_project.helpers import return_anchor_program
+from hadeswap.helpers import return_anchor_program
 
 async def create_merkle_tree_whitelist(program_id: PublicKey, connection: Client, user_pubkey: PublicKey, hado_market: PublicKey, root: bytes, send_txn):
     program = await return_anchor_program(program_id, connection)
