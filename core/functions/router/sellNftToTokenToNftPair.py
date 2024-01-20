@@ -5,12 +5,12 @@ from solana.system_program import SYS_PROGRAM_ID
 from solana.sysvar import SYSVAR_RENT_PUBKEY, SYSVAR_INSTRUCTIONS_PUBKEY
 from solana.transaction import AccountMeta
 
-from .helpers import (
+from hadeswap.helpers import (
     return_anchor_program, find_associated_token_address, find_token_record_pda,
     get_metaplex_edition_pda, get_metaplex_metadata_pda, find_rule_set_pda
 )
-from .constants import ENCODER, SOL_FUNDS_PREFIX, METADATA_PROGRAM_PUBKEY, TOKEN_PROGRAM_ID, ASSOCIATED_PROGRAM_ID
-from .mpl_token_metadata import Metadata  # Assuming a Python equivalent for Metaplex's Metadata
+from hadeswap.constants import ENCODER, SOL_FUNDS_PREFIX, METADATA_PROGRAM_PUBKEY, TOKEN_PROGRAM_ID, ASSOCIATED_PROGRAM_ID
+from mpl_token_metadata import Metadata  # Assuming a Python equivalent for Metaplex's Metadata
 
 async def sell_nft_to_token_to_nft_pair(
     program_id: PublicKey,

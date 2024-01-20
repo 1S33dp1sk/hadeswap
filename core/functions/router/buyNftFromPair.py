@@ -4,23 +4,23 @@ from solana.transaction import AccountMeta
 from solana.rpc.api import Client
 
 # Importing constants from the constants module
-from .constants import (
+from hadeswap.constants import (
     AUTHORIZATION_RULES_PROGRAM, EMPTY_PUBKEY, ENCODER, FEE_PREFIX,
     METADATA_PROGRAM_PUBKEY, NFTS_OWNER_PREFIX, SOL_FUNDS_PREFIX
 )
 
 # Importing helper functions from the helpers module
-from .helpers import (
+from hadeswap.helpers import (
     anchor_raw_BNs_and_pubkeys_to_nums_and_strings, find_rule_set_pda,
     find_token_record_pda, get_metaplex_edition_pda, get_metaplex_metadata,
     return_anchor_program
 )
 
 # Imports for associated and token program IDs, assuming they are defined in your Python project
-from .utils import ASSOCIATED_PROGRAM_ID, TOKEN_PROGRAM_ID
+from hadeswap.utils import ASSOCIATED_PROGRAM_ID, TOKEN_PROGRAM_ID
 
 # Imports for Metaplex's Metadata, assuming a Python equivalent is implemented in your project
-from .mpl_token_metadata import Metadata
+from mpl_token_metadata import Metadata
 
 
 

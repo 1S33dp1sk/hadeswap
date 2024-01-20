@@ -6,26 +6,26 @@ from solana.system_program import SYS_PROGRAM_ID
 from solana.sysvar import SYSVAR_RENT_PUBKEY, SYSVAR_INSTRUCTIONS_PUBKEY
 
 # Importing constants from the constants module
-from .constants import (
+from hadeswap.constants import (
     EMPTY_PUBKEY, ENCODER, NFTS_OWNER_PREFIX, METADATA_PROGRAM_PUBKEY,
     SOL_FUNDS_PREFIX, FEE_PREFIX, AUTHORIZATION_RULES_PROGRAM
 )
 
 # Importing helper functions from the helpers module
-from .helpers import (
+from hadeswap.helpers import (
     anchor_raw_BNs_and_pubkeys_to_nums_and_strings, find_rule_set_pda,
     find_token_record_pda, get_metaplex_edition_pda,
     get_metaplex_metadata_pda, return_anchor_program
 )
 
 # Imports for associated and token program IDs, assuming they are defined in your Python project
-from .utils import ASSOCIATED_PROGRAM_ID, TOKEN_PROGRAM_ID
+from hadeswap.utils import ASSOCIATED_PROGRAM_ID, TOKEN_PROGRAM_ID
 
 # Importing the find_associated_token_address function
-from .common import find_associated_token_address
+from hadeswap.common import find_associated_token_address
 
 # For Metaplex's Metadata, assuming a Python equivalent is implemented in your project
-from .mpl_token_metadata import Metadata
+from hadeswap.mpl_token_metadata import Metadata
 
 
 from typing import Callable, Optional, List, Tuple, Dict
