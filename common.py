@@ -25,7 +25,6 @@ from solders.system_program import (
 
 from dataclasses import dataclass
 from typing import Optional, List, Dict, Tuple
-from decimal import Decimal
 import base58  # For base58 encoding/decoding
 
 from pathlib import Path
@@ -94,7 +93,7 @@ class TokenView:
     mint: str
     owner: str
     amount: int
-    amount_bn: Decimal
+    amount_bn: float
     delegate_option: bool
     delegate: str
     state: int
@@ -197,7 +196,6 @@ async def find_associated_token_address(wallet_address: Pubkey, token_mint_addre
         [bytes(wallet_address), bytes(TOKEN_PROGRAM_ID), bytes(token_mint_address)],
         ASSOCIATED_TOKEN_PROGRAM_ID
     ))[0]
-
 
 
 def create_connection(url: str) -> Client:
