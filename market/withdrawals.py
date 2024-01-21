@@ -61,7 +61,6 @@ async def withdraw_liquidity_from_balanced_pair(program_id: Pubkey, connection: 
     await send_txn(transaction, [])
     return {'account': None, 'instructions': instructions}
 
-
 async def withdraw_liquidity_from_buy_orders_pair(program_id: Pubkey, connection: Client, accounts, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -92,7 +91,6 @@ async def withdraw_liquidity_from_buy_orders_pair(program_id: Pubkey, connection
 
     await send_txn(transaction, [])
     return {'account': None, 'instructions': instructions}
-
 
 async def withdraw_liquidity_from_sell_orders_pair(program_id: Pubkey, connection: Client, accounts, send_txn):
     program = await return_anchor_program(program_id, connection)
@@ -162,7 +160,6 @@ async def withdraw_liquidity_from_sell_orders_pair(program_id: Pubkey, connectio
     await send_txn(transaction, [])
     return {'account': None, 'instructions': instructions}
 
-
 async def withdraw_liquidity_only_buy_orders(program_id: Pubkey, connection: Client, accounts, args, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -194,7 +191,6 @@ async def withdraw_liquidity_only_buy_orders(program_id: Pubkey, connection: Cli
     await send_txn(transaction, [])
     return {'account': None, 'instructions': instructions}
 
-
 async def withdraw_liquidity_order_virtual_fees(program_id: Pubkey, connection: Client, accounts, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -222,7 +218,6 @@ async def withdraw_liquidity_order_virtual_fees(program_id: Pubkey, connection: 
 
     await send_txn(transaction, [])
     return {'account': None, 'instructions': instructions}
-
 
 async def withdraw_liquidity_single_sell_order(program_id: Pubkey, connection: Client, accounts, args, send_txn):
     program = await return_anchor_program(program_id, connection)
@@ -282,7 +277,6 @@ async def withdraw_liquidity_single_sell_order(program_id: Pubkey, connection: C
     await send_txn(transaction, [])
     return {'account': None, 'instructions': instructions}
 
-
 async def withdraw_nft_from_pair(program_id: Pubkey, connection: Client, args, accounts, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -334,7 +328,6 @@ async def withdraw_nft_from_pair(program_id: Pubkey, connection: Client, args, a
     await send_txn(transaction, [])
     return {'account': None, 'instructions': instructions}
 
-
 async def withdraw_sol_from_pair(program_id: Pubkey, connection: Client, accounts, args, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -365,7 +358,6 @@ async def withdraw_sol_from_pair(program_id: Pubkey, connection: Client, account
     await send_txn(transaction, [])
     return {'account': None, 'instructions': instructions}
 
-
 async def withdraw_virtual_fees(program_id: Pubkey, connection: Client, accounts, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -389,6 +381,11 @@ async def withdraw_virtual_fees(program_id: Pubkey, connection: Client, accounts
 
     await send_txn(transaction, [])
     return {'account': None, 'instructions': instructions}
+
+
+
+
+
 
 
 

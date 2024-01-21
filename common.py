@@ -2,11 +2,8 @@ from solana.rpc.api import Client  # Equivalent to web3.Connection in TypeScript
 from solders.pubkey import Pubkey  # Equivalent to web3.Pubkey and @solana/web3.js Pubkey
 from solana.transaction import Transaction
 from solana.rpc.types import TxOpts  # Transaction options
-import base58  # For base58 encoding/decoding
 from solders.keypair import Keypair
 from solders.instruction import Instruction
-# Import your custom modules (assuming they are translated to Python)
-# from .idl.hadeswap import Hadeswap, IDL  # Replace with actual Python module path
 
 # Define the ReturnAnchorProgram type
 # In Python, this could be represented as a function signature using type hints
@@ -29,6 +26,9 @@ from solders.system_program import (
 from dataclasses import dataclass
 from typing import Optional, List, Dict, Tuple
 from decimal import Decimal
+import base58  # For base58 encoding/decoding
+
+from pathlib import Path
 
 from ._hadeswap_idl import IDL as HadeswapIDL  # Import the IDL dictionary from the specified module
 
@@ -192,13 +192,11 @@ def create_fake_wallet() -> NodeWallet:
     leaked_kp = Keypair.from_secret_key(bytes(secret_key))
     return NodeWallet(leaked_kp)
 
-
 async def find_associated_token_address(wallet_address: Pubkey, token_mint_address: Pubkey) -> Pubkey:
     return (await Pubkey.find_program_address(
         [bytes(wallet_address), bytes(TOKEN_PROGRAM_ID), bytes(token_mint_address)],
         ASSOCIATED_TOKEN_PROGRAM_ID
     ))[0]
-
 
 async def get_token_balance(pubkey: Pubkey, connection: Client) -> int:
     balance = await connection.get_token_account_balance(pubkey)
@@ -458,6 +456,12 @@ def get_metaplex_metadata(mint_pubkey: Pubkey) -> Pubkey:
     metadata, _ = find_program_address_sync(seeds, METADATA_PROGRAM_PUBKEY)
     return metadata
 
+# Load Keypair from file
+def load_keypair_from_file(file_path):
+    with Path(file_path).open(mode="r") as f:
+        secret_key = json.load(f)
+    return Keypair.from_secret_key(bytes(secret_key))
+
 
 class Metadata:
     def __init__(self, key, update_authority, mint, name, symbol, uri, seller_fee_basis_points, creators):
@@ -553,3 +557,5 @@ AUTHORIZATION_RULES_PROGRAM = Publickey('auth9SigNpDKz4sJJ1DfCTuZrZNSAgh9sFD3rbo
 
 # Type hint for a function returning an AnchorPy Program instance
 ReturnAnchorProgram = Callable[[Pubkey, Client], Program]
+
+NEW_DEVNET_PROGRAM = Publickey('hadeK9DLv9eA7ya5KCTqSvSvRZeJC3JgD5a9Y3CNbvu')

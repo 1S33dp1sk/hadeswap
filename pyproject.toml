@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "pyhadeswap"
+version = "0.1.0"
+description = "Hadeswap API for Python"
+authors = ["1S33dp1sk <mrkj@d-cloud.io>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+solana = "^0.20.0"
+solders = "^0.1.0"
+construct = "^2.10.56"
+base58 = "^2.1.0"
+anchorpy = "^0.1.0"
+decimal = "^1.70"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

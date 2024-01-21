@@ -30,8 +30,6 @@ async def close_virtual_pair(program_id: Pubkey, connection: Client, pair: Pubke
     await send_txn(transaction, [])
     return {'instructions': instructions}
 
-
-
 async def create_classic_authority_adapter(program_id: Pubkey, connection: Client, pair: Pubkey, user_pubkey: Pubkey, authority_adapter_kp: Keypair, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -53,8 +51,6 @@ async def create_classic_authority_adapter(program_id: Pubkey, connection: Clien
 
     await send_txn(transaction, [authority_adapter])
     return {'authorityAdapter': authority_adapter.public_key, 'instructions': instructions}
-
-
 
 async def initialize_pair(program_id: Pubkey, connection: Client, delta: int, spot_price: int, fee: int, bonding_curve_type: BondingCurveType, pair_type: PairType, hado_market: Pubkey, user_pubkey: Pubkey, send_txn, pair_kp: Optional[Keypair] = None):
     program = await return_anchor_program(program_id, connection)
@@ -106,8 +102,6 @@ async def initialize_pair(program_id: Pubkey, connection: Client, delta: int, sp
     await send_txn(Transaction().add(initialize_pair_instruction), [pair])
     return {'pair': pair.public_key, 'instructions': instructions}
 
-
-
 async def modify_pair(program_id: Pubkey, connection: Client, pair: Pubkey, authority_adapter: Pubkey, user_pubkey: Pubkey, delta: int, spot_price: int, fee: int, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -142,7 +136,6 @@ async def modify_pair(program_id: Pubkey, connection: Client, pair: Pubkey, auth
     await send_txn(transaction, [])
     return {'instructions': instructions}
 
-
 async def put_pair_on_market(program_id: Pubkey, connection: Client, pair: Pubkey, authority_adapter: Pubkey, user_pubkey: Pubkey, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -158,3 +151,9 @@ async def put_pair_on_market(program_id: Pubkey, connection: Client, pair: Pubke
 
     await send_txn(Transaction().add(put_pair_on_market_instruction), [])
     return {'instructions': instructions}
+
+
+
+
+
+

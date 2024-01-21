@@ -1,14 +1,7 @@
 from ..common import *
 
 
-
-async def buy_nft_from_pair(
-    program_id: Pubkey,
-    connection: Client,
-    args: dict,
-    accounts: dict,
-    send_txn
-):
+async def buy_nft_from_pair(program_id: Pubkey,connection: Client,args: dict,accounts: dict,send_txn):
     program = return_anchor_program(program_id, connection)
     instructions = []
 
@@ -97,51 +90,7 @@ async def buy_nft_from_pair(
     # Return the result
     return {'account': None, 'instructions': transaction.instructions, 'signers': signers}
 
-
-async def sell_nft_to_liquidity_pair(
-    program_id: Pubkey,
-    connection: Client,
-    args: Dict[str, any],
-    accounts: Dict[str, Pubkey],
-    send_txn: Callable[[Transaction, List[Keypair]], None]
-) -> Tuple[Pubkey, List[Instruction], List[Keypair]]:
-    """
-    Implement the logic for selling an NFT to a liquidity pair on the Solana blockchain.
-
-    :param program_id: Program public key (Pubkey)
-    :param connection: Solana RPC connection (Client)
-    :param args: Arguments for the transaction (dict)
-    :param accounts: Accounts involved in the transaction (dict)
-    :param send_txn: Callable to send the transaction (function)
-    :return: Tuple containing account public key, list of transaction instructions, and list of signers (Keypair)
-    """
-    # Placeholder for the core logic of the function
-    # You will need to implement the specific logic based on the TypeScript version
-
-    # Example structure (replace with actual logic):
-    account = Pubkey('<replace_with_actual_account>')
-    instructions = []  # List of Instruction
-    signers = []       # List of Keypair
-
-    # Implement the logic to populate 'instructions' and 'signers' based on 'args' and 'accounts'
-
-    # Example of sending a transaction (replace with actual transaction logic)
-    transaction = Transaction()
-    for instruction in instructions:
-        transaction.add(instruction)
-    await send_txn(transaction, signers)
-
-    return account, instructions, signers
-
-
-
-async def sell_nft_to_liquidity_pair(
-    program_id: Pubkey,
-    connection: Client,
-    args: dict,
-    accounts: dict,
-    send_txn
-):
+async def sell_nft_to_liquidity_pair(program_id: Pubkey,connection: Client,args: dict,accounts: dict,send_txn):
     program = return_anchor_program(program_id, connection)
     nft_pair_box = Keypair.generate()
 
@@ -223,14 +172,7 @@ async def sell_nft_to_liquidity_pair(
     # Return the result
     return {'account': nft_pair_box.public_key, 'instructions': transaction.instructions, 'signers': signers}
 
-
-async def sell_nft_to_token_to_nft_pair(
-    program_id: Pubkey,
-    connection: Client,
-    args: dict,
-    accounts: dict,
-    send_txn
-):
+async def sell_nft_to_token_to_nft_pair(program_id: Pubkey,connection: Client,args: dict,accounts: dict,send_txn):
     program = return_anchor_program(program_id, connection)
     instructions = []
 

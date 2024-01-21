@@ -28,8 +28,6 @@ async def deposit_liquidity_only_buy_orders_to_pair(program_id: Pubkey, connecti
     await send_txn(transaction, signers)
     return {'account': None, 'instructions': instructions, 'signers': signers}
 
-
-
 async def deposit_liquidity_single_sell_order(program_id: Pubkey, connection: Client, pair: Pubkey, authority_adapter: Pubkey, user_pubkey: Pubkey, nft_mint: Pubkey, nft_validation_adapter: Pubkey, proof: list, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -90,8 +88,6 @@ async def deposit_liquidity_single_sell_order(program_id: Pubkey, connection: Cl
     signers = [nft_pair_box]
     await send_txn(transaction, signers)
     return {'nftPairBox': nft_pair_box.public_key, 'instructions': instructions, 'signers': signers}
-
-
 
 async def deposit_liquidity_to_pair(program_id: Pubkey, connection: Client, pair: Pubkey, authority_adapter: Pubkey, user_pubkey: Pubkey, nft_mint: Pubkey, nft_validation_adapter: Pubkey, proof: list, send_txn):
     program = await return_anchor_program(program_id, connection)
@@ -154,8 +150,6 @@ async def deposit_liquidity_to_pair(program_id: Pubkey, connection: Client, pair
     await send_txn(transaction, signers)
     return {'nftPairBox': nft_pair_box.public_key, 'instructions': instructions, 'signers': signers}
 
-
-
 async def deposit_nft_to_pair(program_id: Pubkey, connection: Client, args, accounts, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -216,8 +210,6 @@ async def deposit_nft_to_pair(program_id: Pubkey, connection: Client, args, acco
     await send_txn(transaction, [nft_pair_box])
     return {'account': nft_pair_box.public_key, 'instructions': instructions}
 
-
-
 async def deposit_sol_to_pair(program_id: Pubkey, connection: Client, pair: Pubkey, authority_adapter: Pubkey, user_pubkey: Pubkey, amount_of_orders: int, send_txn):
     program = await return_anchor_program(program_id, connection)
     instructions = []
@@ -249,3 +241,5 @@ async def deposit_sol_to_pair(program_id: Pubkey, connection: Client, pair: Pubk
     signers = []
     await send_txn(transaction, signers)
     return {'account': None, 'instructions': instructions, 'signers': signers}
+
+
