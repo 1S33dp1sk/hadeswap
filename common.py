@@ -198,6 +198,17 @@ async def find_associated_token_address(wallet_address: Pubkey, token_mint_addre
         ASSOCIATED_TOKEN_PROGRAM_ID
     ))[0]
 
+
+
+def create_connection(url: str) -> Client:
+    """
+    Create a connection to the Solana blockchain.
+
+    :param url: URL of the Solana cluster to connect to.
+    :return: A Client instance representing the connection.
+    """
+    return Client(url)
+
 async def get_token_balance(pubkey: Pubkey, connection: Client) -> int:
     balance = await connection.get_token_account_balance(pubkey)
     return int(balance['result']['value']['amount'])
