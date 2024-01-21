@@ -82,7 +82,7 @@ async def withdraw_liquidity_from_buy_orders_pair(program_id: Pubkey, connection
         'feeSolVault': fee_sol_vault,
         'systemProgram': SYS_PROGRAM_ID,
         'rent': SYSVAR_RENT_PUBKEY
-    }).remaining_accounts([{'pubkey': Keypair().public_key, 'is_signer': False, 'is_writable': False}]).instruction()
+    }).remaining_accounts([{'pubkey': Keypair().pubkey(), 'is_signer': False, 'is_writable': False}]).instruction()
     instructions.append(withdraw_instruction)
 
     transaction = Transaction()
@@ -181,7 +181,7 @@ async def withdraw_liquidity_only_buy_orders(program_id: Pubkey, connection: Cli
         'feeSolVault': fee_sol_vault,
         'systemProgram': SYS_PROGRAM_ID,
         'rent': SYSVAR_RENT_PUBKEY
-    }).remaining_accounts([{'pubkey': Keypair().public_key, 'is_signer': False, 'is_writable': False}]).instruction()
+    }).remaining_accounts([{'pubkey': Keypair().pubkey(), 'is_signer': False, 'is_writable': False}]).instruction()
     instructions.append(withdraw_instruction)
 
     transaction = Transaction()

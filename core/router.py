@@ -92,7 +92,7 @@ async def buy_nft_from_pair(program_id: Pubkey,connection: Client,args: dict,acc
 
 async def sell_nft_to_liquidity_pair(program_id: Pubkey,connection: Client,args: dict,accounts: dict,send_txn):
     program = return_anchor_program(program_id, connection)
-    nft_pair_box = Keypair.generate()
+    nft_pair_box = Keypair()
 
     user_nft_token_account = await find_associated_token_address(accounts['userPubkey'], accounts['nftMint'])
 
@@ -132,7 +132,7 @@ async def sell_nft_to_liquidity_pair(program_id: Pubkey,connection: Client,args:
     sell_nft_instruction = await program.sell_nft_to_liquidity_pair(
         args['minAmountToGet'], args['skipFailed'], args.get('proof', []), None
     ).accounts_strict({
-        'nftPairBox': nft_pair_box.public_key,
+        'nftPairBox': nft_pair_box.pubkey(),
         'nftValidationAdapter': accounts['nftValidationAdapter'],
         'pair': accounts['pair'],
         'user': accounts['userPubkey'],
@@ -170,7 +170,7 @@ async def sell_nft_to_liquidity_pair(program_id: Pubkey,connection: Client,args:
     await send_txn(transaction, signers)
 
     # Return the result
-    return {'account': nft_pair_box.public_key, 'instructions': transaction.instructions, 'signers': signers}
+    return {'account': nft_pair_box.pubkey(), 'instructions': transaction.instructions, 'signers': signers}
 
 async def sell_nft_to_token_to_nft_pair(program_id: Pubkey,connection: Client,args: dict,accounts: dict,send_txn):
     program = return_anchor_program(program_id, connection)

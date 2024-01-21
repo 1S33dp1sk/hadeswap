@@ -8,7 +8,7 @@ async def validate_nft(program_id: Pubkey, connection: Client, user_pubkey: Pubk
 
     # Assuming the `validateNft` method is implemented in the Python version of the anchor program
     validate_nft_instruction = program.validateNft().accounts_strict({
-        'nftValidationAdapter': nft_validation_adapter.public_key,
+        'nftValidationAdapter': nft_validation_adapter.pubkey(),
         'validationWhitelist': classic_validation_whitelist,
         'user': user_pubkey,
         'systemProgram': SYS_PROGRAM_ID,
@@ -23,7 +23,7 @@ async def validate_nft(program_id: Pubkey, connection: Client, user_pubkey: Pubk
 
     signers = [nft_validation_adapter]
     await send_txn(transaction, signers)
-    return {'account': nft_validation_adapter.public_key, 'instructions': instructions, 'signers': signers}
+    return {'account': nft_validation_adapter.pubkey(), 'instructions': instructions, 'signers': signers}
 
 async def modify_hado_market(program_id: Pubkey, connection: Client, user_pubkey: Pubkey, hado_market: Pubkey, validation_adapter_authority: Pubkey, send_txn):
     program = await return_anchor_program(program_id, connection)
@@ -55,7 +55,7 @@ async def initialize_hado_market(program_id: Pubkey, connection: Client, user_pu
 
     # Assuming the `initializeHadoMarket` method is implemented in the Python version of the anchor program
     initialize_hado_market_instruction = program.initializeHadoMarket().accounts_strict({
-        'hadoMarket': hado_market.public_key,
+        'hadoMarket': hado_market.pubkey(),
         'user': user_pubkey,
         'validationAdapterProgram': validation_adapter_program,
         'pairTokenMint': EMPTY_PUBKEY,
@@ -71,7 +71,7 @@ async def initialize_hado_market(program_id: Pubkey, connection: Client, user_pu
 
     signers = [hado_market]
     await send_txn(transaction, signers)
-    return {'account': hado_market.public_key, 'instructions': instructions, 'signers': signers}
+    return {'account': hado_market.pubkey(), 'instructions': instructions, 'signers': signers}
 
 async def finish_hado_market(program_id: Pubkey, connection: Client, user_pubkey: Pubkey, hado_market: Pubkey, send_txn):
     program = await return_anchor_program(program_id, connection)
@@ -102,7 +102,7 @@ async def create_merkle_tree_whitelist(program_id: Pubkey, connection: Client, u
 
     # Assuming the `addMerkleTreeWhitelist` method is implemented in the Python version of the anchor program
     add_merkle_tree_whitelist_instruction = program.addMerkleTreeWhitelist(list(root)).accounts_strict({
-        'nftValidationAdapter': nft_validation_adapter_v2.public_key,
+        'nftValidationAdapter': nft_validation_adapter_v2.pubkey(),
         'hadoMarket': hado_market,
         'user': user_pubkey,
         'systemProgram': SYS_PROGRAM_ID,
@@ -117,7 +117,7 @@ async def create_merkle_tree_whitelist(program_id: Pubkey, connection: Client, u
 
     signers = [nft_validation_adapter_v2]
     await send_txn(transaction, signers)
-    return {'account': nft_validation_adapter_v2.public_key, 'instructions': instructions, 'signers': signers}
+    return {'account': nft_validation_adapter_v2.pubkey(), 'instructions': instructions, 'signers': signers}
 
 async def add_classic_whitelist_to_market(program_id: Pubkey, connection: Client, user_pubkey: Pubkey, hado_market: Pubkey, whitelisted_address: Pubkey, whitelist_type: NftValidationWhitelistType, send_txn):
     program = await return_anchor_program(program_id, connection)
@@ -129,7 +129,7 @@ async def add_classic_whitelist_to_market(program_id: Pubkey, connection: Client
 
     # Assuming the `addClassicWhitelistToMarket` method is implemented in the Python version of the anchor program
     add_classic_whitelist_to_market_instruction = program.addClassicWhitelistToMarket(anchor_enum_whitelist_type).accounts_strict({
-        'validationWhitelist': validation_whitelist.public_key,
+        'validationWhitelist': validation_whitelist.pubkey(),
         'hadoMarket': hado_market,
         'user': user_pubkey,
         'whitelistedAddress': whitelisted_address,
@@ -145,7 +145,7 @@ async def add_classic_whitelist_to_market(program_id: Pubkey, connection: Client
 
     signers = [validation_whitelist]
     await send_txn(transaction, signers)
-    return {'account': validation_whitelist.public_key, 'instructions': instructions, 'signers': signers}
+    return {'account': validation_whitelist.pubkey(), 'instructions': instructions, 'signers': signers}
 
 
 

@@ -34,11 +34,11 @@ async def create_classic_authority_adapter(program_id: Pubkey, connection: Clien
     program = await return_anchor_program(program_id, connection)
     instructions = []
 
-    authority_adapter = authority_adapter_kp or Keypair.generate()
+    authority_adapter = authority_adapter_kp or Keypair()
 
     create_adapter_instruction = program.create_classic_authority_adapter().accounts_strict({
         'pair': pair,
-        'authorityAdapter': authority_adapter.public_key,
+        'authorityAdapter': authority_adapter.pubkey(),
         'user': user_pubkey,
         'systemProgram': SYS_PROGRAM_ID,
         'rent': SYSVAR_RENT_PUBKEY,
@@ -50,23 +50,18 @@ async def create_classic_authority_adapter(program_id: Pubkey, connection: Clien
         transaction.add(instruction)
 
     await send_txn(transaction, [authority_adapter])
-    return {'authorityAdapter': authority_adapter.public_key, 'instructions': instructions}
+    return {'authorityAdapter': authority_adapter.pubkey(), 'instructions': instructions}
 
 async def initialize_pair(program_id: Pubkey, connection: Client, delta: int, spot_price: int, fee: int, bonding_curve_type: BondingCurveType, pair_type: PairType, hado_market: Pubkey, user_pubkey: Pubkey, send_txn, pair_kp: Optional[Keypair] = None):
     program = await return_anchor_program(program_id, connection)
     instructions = []
-
-    pair = pair_kp or Keypair.generate()
-
-    fee_sol_vault_seed = [ENCODER.encode(FEE_PREFIX), pair.public_key.to_bytes()]
+    pair = pair_kp or Keypair()
+    fee_sol_vault_seed = [ENCODER.encode(FEE_PREFIX), pair.to_bytes_array()]
     fee_sol_vault = await Pubkey.find_program_address(fee_sol_vault_seed, program.program_id)
-
-    sol_funds_vault_seed = [ENCODER.encode(SOL_FUNDS_PREFIX), pair.public_key.to_bytes()]
+    sol_funds_vault_seed = [ENCODER.encode(SOL_FUNDS_PREFIX), pair.to_bytes_array()]
     sol_funds_vault = await Pubkey.find_program_address(sol_funds_vault_seed, program.program_id)
-
-    nfts_owner_seed = [ENCODER.encode(NFTS_OWNER_PREFIX), pair.public_key.to_bytes()]
+    nfts_owner_seed = [ENCODER.encode(NFTS_OWNER_PREFIX), pair.to_bytes_array()]
     nfts_owner = await Pubkey.find_program_address(nfts_owner_seed, program.program_id)
-
     initialize_pair_instruction = program.initialize_pair(
         {
             'feeVaultSeed': fee_sol_vault_seed,
@@ -81,7 +76,7 @@ async def initialize_pair(program_id: Pubkey, connection: Client, delta: int, sp
         enum_to_anchor_enum(bonding_curve_type),
         enum_to_anchor_enum(pair_type),
     ).accounts_strict({
-        'pair': pair.public_key,
+        'pair': pair.pubkey(),
         'hadoMarket': hado_market,
         'user': user_pubkey,
         'pairAuthorityAdapterProgram': program_id,
@@ -98,9 +93,8 @@ async def initialize_pair(program_id: Pubkey, connection: Client, delta: int, sp
         'rent': SYSVAR_RENT_PUBKEY,
     }).instruction()
     instructions.append(initialize_pair_instruction)
-
     await send_txn(Transaction().add(initialize_pair_instruction), [pair])
-    return {'pair': pair.public_key, 'instructions': instructions}
+    return {'pair': pair.pubkey(), 'instructions': instructions}
 
 async def modify_pair(program_id: Pubkey, connection: Client, pair: Pubkey, authority_adapter: Pubkey, user_pubkey: Pubkey, delta: int, spot_price: int, fee: int, send_txn):
     program = await return_anchor_program(program_id, connection)

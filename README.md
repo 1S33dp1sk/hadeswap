@@ -47,11 +47,17 @@ hadeswap/
 ```
 
 
+
+
+
 ## Usage
 
 To use the Hadeswap Python API, import the required modules and functions from the hadeswap package. You can then interact with the Hadeswap platform by calling the provided functions with the appropriate parameters.
 
 For more detailed examples and usage instructions, refer to the documentation provided within each module and function.
+
+
+
 
 ```python
 
@@ -90,14 +96,14 @@ async def main():
         },
         {
             "hado_market": hado_market,
-            "user_pubkey": user_keypair.public_key
+            "user_pubkey": user_keypair.pubkey()
         },
         send_txn
     )
     # Get all program accounts to find the authority adapter
     all_accounts = await get_all_program_accounts(program_id, connection)
     pair = "FsE3egxUv3eiLDNLT6m4bu6s72dMTjGfYc4Xhk7Yd9rq"
-    authority_adapter = next(account.authority_adapter for account in all_accounts.authority_adapters if account.pair == pair and account.authority_owner == user_keypair.public_key.to_base58())
+    authority_adapter = next(account.authority_adapter for account in all_accounts.authority_adapters if account.pair == pair and account.authority_owner == user_keypair.pubkey().to_base58())
     # Deposit SOL to Pair
     await deposit_sol_to_pair(
         program_id,
@@ -108,7 +114,7 @@ async def main():
         {
             "pair": pair,
             "authority_adapter": authority_adapter,
-            "user_pubkey": user_keypair.public_key
+            "user_pubkey": user_keypair.pubkey()
         },
         send_txn
     )
